@@ -1,7 +1,6 @@
 package com.alibaba.nacos.test.naming;
 
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
@@ -13,11 +12,7 @@ import com.alibaba.nacos.api.PropertyKeyConst;
 import com.alibaba.nacos.api.common.Constants;
 import com.alibaba.nacos.api.naming.NamingFactory;
 import com.alibaba.nacos.api.naming.NamingService;
-import com.alibaba.nacos.api.naming.listener.Event;
-import com.alibaba.nacos.api.naming.listener.EventListener;
-import com.alibaba.nacos.api.naming.listener.NamingEvent;
 import com.alibaba.nacos.api.naming.pojo.Instance;
-import com.alibaba.nacos.api.naming.pojo.ListView;
 import com.alibaba.nacos.client.naming.NacosNamingService;
 import com.alibaba.nacos.naming.NamingApp;
 
@@ -202,7 +197,7 @@ public class MultiTenant_InstanceAPI_ITCase {
                 .appendParam("namespaceId", "namespace-2")
                 .done(),
             String.class);
-        Assert.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        Assert.assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
 
         response = request("/nacos/v1/ns/instance/list",
             Params.newParams()
